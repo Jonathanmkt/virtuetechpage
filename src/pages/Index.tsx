@@ -1,7 +1,8 @@
 
-import { ArrowRight, Brain, Lightbulb, Zap, Users, Target } from "lucide-react";
+import { ArrowRight, Lightbulb, Zap, Users, Target, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Logo from "@/components/Logo";
 
 const Index = () => {
   const whatsappNumber = "+551151951015";
@@ -23,10 +24,8 @@ const Index = () => {
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Brain className="w-6 h-6 text-white" />
-            </div>
+          <div className="flex items-center space-x-4">
+            <Logo size="md" />
             <span className="text-2xl font-bold text-white">VirtueTech</span>
           </div>
           <Button 
@@ -240,10 +239,8 @@ const Index = () => {
       {/* Footer */}
       <footer className="container mx-auto px-4 py-12 border-t border-purple-500/20">
         <div className="text-center">
-          <div className="flex justify-center items-center space-x-2 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Brain className="w-4 h-4 text-white" />
-            </div>
+          <div className="flex justify-center items-center space-x-4 mb-4">
+            <Logo size="sm" />
             <span className="text-xl font-bold text-white">VirtueTech</span>
           </div>
           <p className="text-gray-400 mb-2">As virtudes de sempre impulsionadas pelas tecnologias do futuro</p>
