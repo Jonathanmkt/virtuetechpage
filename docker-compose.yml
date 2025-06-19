@@ -11,7 +11,7 @@ services:
           memory: 512M
       labels:
       - traefik.enable=1
-      - traefik.http.routers.virtuetechpage.rule=Host(`virtuetech.virtuetech.com.br`)
+      - traefik.http.routers.virtuetechpage.rule=Host(`virtuetech.virtuetech.com.br`, `www.virtuetech.virtuetech.com.br`)
       - traefik.http.routers.virtuetechpage.entrypoints=websecure
       - traefik.http.routers.virtuetechpage.priority=1
       - traefik.http.routers.virtuetechpage.tls.certresolver=letsencryptresolver
