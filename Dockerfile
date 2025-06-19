@@ -20,18 +20,34 @@ ENV VITE_BASE_URL=$VITE_BASE_URL
 
 RUN npm run build
 
-# Stage 3: Ambiente de produção usando nginx
-FROM nginx:stable-alpine AS production
-WORKDIR /usr/share/nginx/html
+# Stage 3: Ambiente de produção usando Node.js
+FROM node:18-alpine AS production
+WORKDIR /app
+ENV NODE_ENV production
 
-# Copiar os arquivos de build do Vite
-COPY --from=builder /app/dist .
+# Argumentos do build para produção
+ARG VITE_API_URL
+ARG VITE_BASE_URL
 
-# Copiar configuração personalizada do nginx
-COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
+# Variáveis de ambiente para produção
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_BASE_URL=$VITE_BASE_URL
 
-# Expor porta 80
-EXPOSE 80
+# Instalar serve para servir arquivos estáticos
+RUN npm install -g serve@14.2.1
 
-# Iniciar nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Copiar apenas arquivos necessários
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./package.json
+
+# Usuário não-root para segurança
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 appuser
+RUN chown -R appuser:nodejs /app
+USER appuser
+
+# Expor porta 3000
+EXPOSE 3000
+
+# Iniciar servidor
+CMD ["serve", "-s", "dist", "-l", "3000"]

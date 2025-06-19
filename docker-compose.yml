@@ -16,7 +16,7 @@ services:
       - traefik.http.routers.virtuetechpage.priority=1
       - traefik.http.routers.virtuetechpage.tls.certresolver=letsencryptresolver
       - traefik.http.routers.virtuetechpage.service=virtuetechpage
-      - traefik.http.services.virtuetechpage.loadbalancer.server.port=80
+      - traefik.http.services.virtuetechpage.loadbalancer.server.port=3000
       - traefik.http.services.virtuetechpage.loadbalancer.passHostHeader=true
       placement:
         constraints:
